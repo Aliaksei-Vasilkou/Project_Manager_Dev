@@ -21,7 +21,7 @@
         <td><%= project.summary %></td>
         <td><%= project.start_date %></td>
         <td><%= project.end_date %></td>
-        <td><%= project.user %></td>
+        <td><%= "#{project.user.first_name} #{project.user.last_name}" %></td>
         <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
