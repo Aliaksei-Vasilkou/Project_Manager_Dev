@@ -22,8 +22,24 @@
 
 <p>
   <strong>User:</strong>
-  <%= user_full_name %>
+  <%= project_user_full_name %>
 </p>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
+
+<hr>
+<% if @project.tasks.count > 0 %>
+    <h3>Project's tasks:</h3>
+    <% @project.tasks.each do |task| %>
+        <ul>
+          <li><strong><%= task.title %>:</strong> <%= task.description %></li>
+        </ul>
+    <% end %>
+    <%#= render @project.tasks %>
+   <% else %>
+    <h3>Add new task:</h3>
+
+<% end %>
+
+<%= render 'tasks/form' %>

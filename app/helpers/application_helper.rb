@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  def user_full_name
+  def project_user_full_name
     "#{@project.user.first_name} #{@project.user.last_name}"
   end
 
