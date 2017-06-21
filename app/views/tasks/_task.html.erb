@@ -1,4 +1,8 @@
 <div class="tasks">
-  <%= task.title %> <br>
+  <strong><%= task.title %>: </strong>
   <%= task.description %> <br>
+  <%= link_to 'Delete task', [task.project, task],
+      method: :delete,
+      data: { confirm: 'Delete task?' } %>
+  <%= link_to 'Edit task', edit_project_task_path(@project, task) %>
 </div>
