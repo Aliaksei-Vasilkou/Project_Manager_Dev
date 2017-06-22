@@ -10,13 +10,17 @@
       <th>Start date</th>
       <th>End date</th>
       <th>User</th>
-      <th>Task's count</th>
+      <th>Total</th>
+      <th>N / P / D</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @projects.each do |project| %>
+      <%  new = project.tasks.where(status_id: '1').count
+          progress = project.tasks.where(status_id: '2').count
+          done = project.tasks.where(status_id: '3').count %>
       <tr>
         <td><%= project.name %></td>
         <td><%= project.summary %></td>
@@ -24,6 +28,7 @@
         <td><%= project.end_date %></td>
         <td><%= "#{project.user.first_name} #{project.user.last_name}" %></td>
         <td><%= project.tasks.count %></td>
+        <td><%= "#{new} / #{progress} / #{done}" %></td>
         <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -13,7 +13,8 @@
   <p class="alert"><%= alert %></p>
 
   <% if user_signed_in? %>
-      <p>Вы вошли как <strong><%= logged_user_full_name %></strong></p>
+      <p>Signed in: <strong><%= logged_user_full_name %></strong></p>
+      <p>Role: <strong><%= Role.find(current_user.role_id).name %></strong></p>
       <hr>
   <% end %>
 

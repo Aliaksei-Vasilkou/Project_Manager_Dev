@@ -35,7 +35,6 @@
     <%= form.label :user_id %>
     <%= collection_select(:project, :user_id, User.all, :id, :last_name, promt: false ) %>
     <!--#form.text_field :user_id, id: :project_user_id -->
-
   </div>
 
   <div class="actions">

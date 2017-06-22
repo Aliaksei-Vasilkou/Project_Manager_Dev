@@ -1,6 +1,7 @@
 <div class="tasks">
   <strong><%= task.title %>: </strong>
-  <%= task.description %> <br>
+  <%= task.description %>  <strong>Status: </strong><%= Status.find_by(id: task.status_id).name  %><br>
+
   <%= link_to 'Delete task', [task.project, task],
       method: :delete,
       data: { confirm: 'Delete task?' } %>
