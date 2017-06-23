@@ -4,7 +4,8 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-
+# Using gem Cancancan to to differentiate privileges
+gem 'cancancan', '~> 1.10'
 # Connecting Devise gem to authenticate our Users
 gem 'devise', '~> 4.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
