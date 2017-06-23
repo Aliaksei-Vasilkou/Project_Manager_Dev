@@ -9,15 +9,17 @@
   </head>
 
   <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
 
   <% if user_signed_in? %>
       <p>Signed in: <strong><%= logged_user_full_name %></strong></p>
-      <p>Role: <strong><%= Role.find(current_user.role_id).name %></strong></p>
+      <% if current_user.admin? %>
+        <p>Role: <strong>Admin</strong></p>
+      <% else %>
+        <p>Role: <strong>User</strong></p>
+      <% end %>
       <hr>
   <% end %>
-
+  <p id="notice"><%= notice %></p>
 
   <%= yield %>
 

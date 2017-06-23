@@ -11,6 +11,12 @@
       <%= f.label :status_id %>
       <%= collection_select(:task, :status_id, Status.all, :id, :name, promt: false ) %>
     </div>
+
+    <div class="field">
+      <%= f.label :user_id %>
+      <%= collection_select(:task, :user_id, User.all, :id, :last_name, promt: false ) %>
+    </div>
+
     <p>
       <%= f.submit %>
     </p>
