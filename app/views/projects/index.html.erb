@@ -44,3 +44,15 @@
 
 <%= link_to 'New Project', new_project_path %>
 <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+
+<% if current_user.admin? %>
+<hr>
+<div>
+  <%= "User count: #{total_user_count}" %>
+  <ul>
+  <% User.all.each do |user| %>
+    <li><%= "#{user.first_name} #{user.last_name} ( #{Task.where(["user_id = ?", user.id]).count} )" %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>

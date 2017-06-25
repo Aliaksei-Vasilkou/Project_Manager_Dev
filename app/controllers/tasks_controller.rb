@@ -3,7 +3,8 @@ class TasksController < ApplicationController
 
   def create
     @task = @project.tasks.create(task_params)
-
+    @task.owner = current_user.id
+    @task.status_id = 1   # Setting default status into "New"
     respond_to do |format|
       if @task.save
         format.html { redirect_to project_path(@project), notice: 'New task was successfully created' }
@@ -20,9 +21,9 @@ class TasksController < ApplicationController
   def update
     @task = @project.tasks.find(params[:id])
     if @task.update(task_params)
-      redirect_to @project
+      redirect_to @project, notice: 'Task was successfully updated'
     else
-      #render 'edit'
+      render 'edit'
     end
   end
 
@@ -40,6 +41,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :description, :status_id, :user_id)
+    params.require(:task).permit(:title, :description, :status_id, :user_id, :owner)
   end
 end
