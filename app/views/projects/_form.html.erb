@@ -1,43 +1,47 @@
 <%= form_with(model: project, local: true) do |form| %>
-  <% if project.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+    <% if project.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+          <ul>
+            <% project.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
-      <ul>
-      <% project.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4><%= t('.new_project', :default => "New project") %></h4>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <%= form.label :name %>
+          <%= form.text_field :name, id: :project_name, class: "form-control" %>
+        </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :project_name %>
-  </div>
+        <div class="form-group">
+          <%= form.label :summary %>
+          <%= form.text_area :summary, id: :project_summary, class: "form-control", rows: 3 %>
+        </div>
 
-  <div class="field">
-    <%= form.label :summary %>
-    <%= form.text_area :summary, id: :project_summary %>
-  </div>
+        <div class="form-group">
+          <%= form.label :start_date %>
+          <%= form.date_select :start_date, id: :project_start_date %>
+        </div>
 
-  <div class="field">
-    <%= form.label :start_date %>
-    <%= form.date_select :start_date, id: :project_start_date %>
-  </div>
+        <div class="form-group">
+          <%= form.label :end_date %>
+          <%= form.date_select :end_date, id: :project_end_date %>
+        </div>
 
-  <div class="field">
-    <%= form.label :end_date %>
-    <%= form.date_select :end_date, id: :project_end_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= collection_select(:project, :user_id, User.all, :id, :last_name, promt: false ) %>
-    <!--#form.text_field :user_id, id: :project_user_id -->
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+        <div class="form-group">
+          <%= form.label :user_id %>
+          <%= collection_select(:project, :user_id, User.all, :id, :last_name, promt: false) %>
+        </div>
+        <div class="form-group ">
+          <%= form.submit class: "btn btn-primary btn_center" %>
+        </div>
+      </div>
 <% end %>
+</div>

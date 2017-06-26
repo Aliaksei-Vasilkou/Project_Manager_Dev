@@ -1,24 +1,38 @@
-<h1>Edit task</h1>
-<%= form_for([@task.project, @task]) do |f| %>
-    <p>
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-    </p>
-    <p>
-      <%= f.label :description %>
-      <%= f.text_area :description %>
-    </p>
-    <div class="field">
-      <%= f.label :status_id %>
-      <%= collection_select(:task, :status_id, Status.all, :id, :name, promt: false ) %>
+<div class="col-md-8 col-md-offset-2">
+  <div class="panel panel-default">
+
+    <div class="panel-heading">
+      <h4><%= t('.edit_task', :default => "Edit task") %></h4>
     </div>
 
-    <div class="field">
-      <%= f.label :user_id %>
-      <%= collection_select(:task, :user_id, User.all, :id, :last_name, promt: false ) %>
-    </div>
+    <div class="panel-body">
+      <%= form_for([@task.project, @task]) do |f| %>
 
-    <p>
-      <%= f.submit %>
-    </p>
-<% end %>
+          <div class="form-group">
+            <%= f.label :title %>
+            <%= f.text_field :title, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :description %>
+            <%= f.text_area :description, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :status_id %>
+            <%= collection_select(:task, :status_id, Status.all, :id, :name, promt: false) %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :user_id %>
+            <%= collection_select(:task, :user_id, User.all, :id, :last_name, promt: false) %>
+          </div>
+
+          <div class="form-group">
+            <%= f.submit class: "btn btn-primary btn_center" %>
+          </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

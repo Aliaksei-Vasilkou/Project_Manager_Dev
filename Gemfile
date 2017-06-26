@@ -4,6 +4,10 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
+# Connecting Bootstrap styles
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'devise-bootstrap-views'
+gem 'jquery-rails'
 # Using gem Cancancan to to differentiate privileges
 gem 'cancancan', '~> 1.10'
 # Connecting Devise gem to authenticate our Users

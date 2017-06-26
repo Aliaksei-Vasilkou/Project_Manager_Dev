@@ -1,40 +1,43 @@
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Project: <%= @project.name %></h3>
+    </div>
+    <div class="panel-body">
+      <p>
+        <strong>Summary:</strong>
+        <%= @project.summary %>
+      </p>
 
-<p>
-  <strong>Summary:</strong>
-  <%= @project.summary %>
-</p>
+      <p>
+        <strong>Start date:</strong>
+        <%= @project.start_date %>
+      </p>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @project.start_date %>
-</p>
+      <p>
+        <strong>End date:</strong>
+        <%= @project.end_date %>
+      </p>
 
-<p>
-  <strong>End date:</strong>
-  <%= @project.end_date %>
-</p>
+      <p>
+        <strong>User:</strong>
+        <%= project_user_full_name %>
+      </p>
 
-<p>
-  <strong>User:</strong>
-  <%= project_user_full_name %>
-</p>
+      <% if can? :update, @project %>
+          <%= link_to 'Edit', edit_project_path(@project) %> |
+      <% end %>
 
-<% if can? :update, @project %>
-  <%= link_to 'Edit', edit_project_path(@project) %> |
-<%	end %>
+      <%= link_to 'Back', projects_path %>
+    </div>
+  </div>
+  <hr>
+  <% if @project.tasks.count > 0 %>
+      <h3>Project's tasks:</h3>
+      <%= render @project.tasks %>
+  <% else %>
+      <h3>Add new task:</h3>
+  <% end %>
 
-<%= link_to 'Back', projects_path %>
-
-<hr>
-<% if @project.tasks.count > 0 %>
-    <h2>Project's tasks:</h2>
-       <%= render @project.tasks %>
-   <% else %>
-    <h3>Add new task:</h3>
-<% end %>
-
-<%= render 'tasks/form' %>
+  <%= render 'tasks/form' %>
+</div>
