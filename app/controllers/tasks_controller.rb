@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
   before_action :find_project
+  load_and_authorize_resource param_method: :task_params
+
 
   def create
     @task = @project.tasks.create(task_params)
@@ -32,6 +34,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
+      authorize!
       @task = @project.tasks.find(params[:id])
       @task.destroy
       respond_to do |format|
