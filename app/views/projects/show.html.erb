@@ -8,17 +8,14 @@
         <strong>Summary:</strong>
         <%= @project.summary %>
       </p>
-
       <p>
         <strong>Start date:</strong>
         <%= @project.start_date %>
       </p>
-
       <p>
         <strong>End date:</strong>
         <%= @project.end_date %>
       </p>
-
       <p>
         <strong>User:</strong>
         <%= project_user_full_name %>
@@ -32,12 +29,12 @@
     </div>
   </div>
   <hr>
-  <% if @project.tasks.count > 0 %>
-      <h3>Project's tasks:</h3>
-      <%= render @project.tasks %>
-  <% else %>
-      <h3>Add new task:</h3>
-  <% end %>
+
+  <h3 id="">Project's tasks:</h3>
+
+  <div class="container" id="tasks_container">
+    <%= render @project.tasks %>
+  </div>
 
   <%= render 'tasks/form' %>
 </div>

@@ -1,29 +1,27 @@
-<div class="container">
-  <div class="well">
-    <strong><%= task.title %>: </strong>
-    <%= task.description %>  <br>
-    <strong>Status: </strong><%= Status.find_by(id: task.status_id).name %><br>
-    <strong>Manager: </strong><%= User.find_by(id: task.user_id).last_name %><br>
+<div class="well" id="task_<%= task.id %>">
+  <strong><%= task.title %>: </strong>
+  <%= task.description %>  <br>
+  <strong>Status: </strong><%= Status.find_by(id: task.status_id).name %><br>
+  <strong>Manager: </strong><%= User.find_by(id: task.user_id).last_name %><br>
 
-    <% if can? :destroy, @task %>
-        <%= link_to 'Delete task', [task.project, task],
-                    method: :delete,
-                    data: {confirm: 'Delete task?'} %>
-    <% else %>
-        <% if task.owner == current_user.id %>
-            <%= link_to 'Delete task', [task.project, task],
-                        method: :delete,
-                        data: {confirm: 'Delete task?'} %>
-        <% end %>
-    <% end %>
+  <% if can? :destroy, @task %>
+      <%= link_to 'Delete task', [task.project, task],
+                  method: :delete,
+                  data: {confirm: 'Delete task?'}, remote: true %>
+  <% else %>
+      <% if task.owner == current_user.id %>
+          <%= link_to 'Delete task', [task.project, task],
+                      method: :delete,
+                      data: {confirm: 'Delete task?'}, remote: true %>
+      <% end %>
+  <% end %>
 
-    <% if can? :update, @task %>
-        <%= link_to 'Edit task', edit_project_task_path(@project, task) %>
-    <% else %>
-        <% if task.owner == current_user.id %>
-            <%= link_to 'Edit task', edit_project_task_path(@project, task) %>
-        <% end %>
-    <% end %>
-  </div>
+  <% if can? :update, @task %>
+      <%= link_to 'Edit task', edit_project_task_path(@project, task) %>
+  <% else %>
+      <% if task.owner == current_user.id %>
+          <%= link_to 'Edit task', edit_project_task_path(@project, task) %>
+      <% end %>
+  <% end %>
 </div>
 

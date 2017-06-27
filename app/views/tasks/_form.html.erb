@@ -5,17 +5,16 @@
       <h4><%= t('.add_task', :default => "Add task") %></h4>
     </div>
 
-    <div class="panel-body">
-      <%= form_for([@project, @project.tasks.build]) do |f| %>
-
+    <%= form_for([@project, @project.tasks.build], remote: true) do |f| %>
+        <div class="panel-body" id="task_form">
           <div class="form-group">
             <%= f.label :title %>
-            <%= f.text_field :title, class: "form-control" %>
+            <%= f.text_field :title, class: "form-control task_title" %>
           </div>
 
           <div class="form-group">
             <%= f.label :description %>
-            <%= f.text_area :description, class: "form-control" %>
+            <%= f.text_area :description, class: "form-control task_description" %>
           </div>
 
           <div class="form-group">
@@ -26,8 +25,7 @@
           <div class="form-group">
             <%= f.submit class: "btn btn-primary btn_center" %>
           </div>
-
-      <% end %>
-    </div>
+        </div>
+    <% end %>
   </div>
 </div>

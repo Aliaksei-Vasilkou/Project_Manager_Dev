@@ -8,8 +8,10 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save
         format.html { redirect_to project_path(@project), notice: 'New task was successfully created' }
+        format.js
       else
         format.html { render 'projects/show' }
+        format.js
       end
     end
   end
@@ -20,18 +22,22 @@ class TasksController < ApplicationController
 
   def update
     @task = @project.tasks.find(params[:id])
-    if @task.update(task_params)
-      redirect_to @project, notice: 'Task was successfully updated'
+    respond_to do |format|
+      if @task.update(task_params)
+        format.html { redirect_to @project, notice: 'Task was successfully updated' }
+        format.js
     else
       render 'edit'
     end
   end
 
   def destroy
-    def destroy
       @task = @project.tasks.find(params[:id])
       @task.destroy
-      redirect_to project_path(@project)
+      respond_to do |format|
+        format.html { redirect_to project_path(@project), notice: 'Task was successfully destroyed' }
+        format.js
+      end
     end
   end
 
