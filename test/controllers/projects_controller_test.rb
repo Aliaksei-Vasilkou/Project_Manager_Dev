@@ -3,6 +3,19 @@ require 'test_helper'
 class ProjectsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @project = projects(:one)
+    @task = tasks(:one)
+  end
+
+  test "sould valid project name" do
+    @project.name = ""
+    @project.save
+    assert true, "Project's name can't be blank"
+  end
+
+  test "sould valid project summary" do
+    @project.summary = ""
+    @project.save
+    assert true, "Project's summary can't be blank"
   end
 
   test "should get index" do

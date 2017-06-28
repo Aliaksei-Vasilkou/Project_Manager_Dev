@@ -43,9 +43,7 @@ ActiveRecord::Schema.define(version: 20170625172021) do
     t.datetime "updated_at", null: false
     t.bigint "status_id"
     t.bigint "user_id"
-    t.bigint "owner_id"
     t.integer "owner"
-    t.index ["owner_id"], name: "index_tasks_on_owner_id"
     t.index ["project_id"], name: "index_tasks_on_project_id"
     t.index ["status_id"], name: "index_tasks_on_status_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"

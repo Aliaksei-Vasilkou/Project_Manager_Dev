@@ -1,11 +1,15 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
   title: MyString
-  description: MyText
+  description: MyText For Test
   project: one
+  status_id: one
+  user_id: two
+  owner: two
 
 two:
   title: MyString
-  description: MyText
+  description: MyText For Test
   project: two
+  status_id: one
+  user_id: two
+  owner: two
